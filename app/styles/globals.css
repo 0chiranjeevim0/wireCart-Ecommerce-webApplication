@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+@layer components{
+    .navbarContainer{
+        @apply py-4 px-6 flex items-center justify-between shadow-lg ;
+        font-family: 'Poppins', sans-serif;
+    }
+    .navbarLogo{
+        @apply text-3xl;
+    }
+
+    .navbarIcon{
+        @apply hidden md:inline-block h-8 w-8 mx-2 hover:scale-150 ease-in-out duration-200;
+    }
+    .sidebarTogglerIcon{
+        @apply h-10 w-10 mx-2 md:hidden;
+    }
+    .sidebarTogglerIconUnactive{
+        @apply hidden;
+    }
+    .sidebarActive{
+        width:100%;
+        height:100vh;
+        left:0%;
+        border-top:2px solid purple;
+        background-color:white;
+        position:absolute;
+        transition:850ms;
+        @apply md:hidden;
+    }
+    .sidebarunActive{
+        width:100%;
+        height:100vh;
+        left:-100%;
+        border-top:2px solid purple;
+        background-color:white;
+        position:absolute;
+        transition:850ms;
+        @apply md:hidden;
+    }
+    .sidebarIconContainer{
+        @apply inline-flex items-center w-full flex justify-center mt-16;
+
+    }
+    .iconText{
+        @apply text-3xl ml-4;
+    }
+    .sidebarIcons{
+        @apply w-10 h-10;
+    }
+    .bannerImg{
+        height:60vh;
+    }
+    .bannerTextContainer{
+        @apply flex flex-col justify-center h-full;
+        @media(min-width:780px){
+            padding-right:180px;
+        }
+
+    }
+    .bannerText{
+        font-size:50px;
+        @media(min-width:780px){
+            font-size:60px;
+        }
+    }
+    .span{
+        font-size:60px;
+        @media(min-width:780px){
+            font-size:60px;
+        }
+    }
+    .productsContainer{
+        @apply bg-gray-100 px-4 flex flex-wrap justify-between;
+    }
+    .productContainer{
+        @apply max-w-sm bg-white rounded overflow-hidden shadow-lg my-10;
+        height:520px;
+    }
+}
