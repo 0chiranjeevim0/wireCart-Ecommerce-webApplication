@@ -1,10 +1,13 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
+import firestore from '../firebase/firebase.js';
+import {onSnapshot,collection} from 'firebase/firestore';
 import Sidebarmenu from './Sidebarmenu.js';
 import Icons from './icons.js';
 
 const Navbar = () =>{
     const [authstate, setAuthState] = useState(true)
     const [sidebaractive, setSidebaractive] = useState(false);
+    const [cartitems, setCartitems] = useState([]);
 
     const sidebarToggler = () =>{
         if(sidebaractive){
@@ -13,6 +16,13 @@ const Navbar = () =>{
             setSidebaractive(true);
         }
     };
+
+    useEffect(() =>{
+        const collectionRef = collection(firestore,'adminCart');
+        onSnapshot(collectionRef,(snapshot) =>{
+            setCartitems(snapshot.docs.map((doc) => doc.data()))
+        })
+    },[])
 
     return(
         <>
@@ -36,7 +46,7 @@ const Navbar = () =>{
             </div>
         </div>
         <div className={(sidebaractive?'sidebarActive':'sidebarunActive')}>
-            <Sidebarmenu />
+            <Sidebarmenu cartCount={cartitems.length}/>
         </div>
         </>
         
